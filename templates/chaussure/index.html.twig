@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chaussure index{% endblock %}
+
+{% block body %}
+    <h1>Chaussure index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Marque</th>
+                <th>Taille</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for chaussure in chaussures %}
+            <tr>
+                <td>{{ chaussure.id }}</td>
+                <td>{{ chaussure.type ? chaussure.type|join(', ') : '' }}</td>
+                <td>{{ chaussure.marque }}</td>
+                <td>{{ chaussure.taille }}</td>
+                <td>
+                    <a href="{{ path('app_chaussure_show', {'id': chaussure.id}) }}">show</a>
+                    <a href="{{ path('app_chaussure_edit', {'id': chaussure.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_chaussure_new') }}">Create new</a>
+{% endblock %}
